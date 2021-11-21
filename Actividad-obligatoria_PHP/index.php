@@ -14,6 +14,7 @@
 </head>
 <body>
     <?php
+    // datos en variables
     $nombre = "Claudia";
     $apellido = "Bottero";
     $edad = 44;
@@ -21,11 +22,39 @@
     $editor = "VSCode";
     $os = "Windows 10";
     $image_url = "weeme.jpg";
-    $image_alt = "Mini me"
+    $image_alt = "Mini me";
+
+    // datos en array asociativo 
+    $data = array(
+        'nombre' => 'Claudia',
+        'apellido' => 'Bottero',
+        'edad' => 44,
+        'hobby' => 'Leer',
+        'editor' => 'VSCode',
+        'os' => 'Windows 10',
+        'img' => array(
+            'url' => 'weeme.jpg',
+            'alt' => 'Mini me'
+            )
+        );
+
+    // short array syntax 
+    $data2 = [
+        'nombre' => 'Claudia',
+        'apellido' => 'Bottero',
+        'edad' => 44,
+        'hobby' => 'Leer',
+        'editor' => 'VSCode',
+        'os' => 'Windows 10',
+        'img' => [
+            'url' => 'weeme.jpg',
+            'alt' => 'Mini me'
+            ]
+        ];
     ?>
 
     <?php
-    // Using echo in every variable, concatenation when needed
+    // Using echo for every variable, concatenation when needed
     // Así es como se usa en WordPress, que es lo que conocía hasta el momento. Me parece que no es muy práctico. Busqué alternativas más limpias y las incluí más abajo.
     ?>
     <!-- <div class="container pt-5">
@@ -89,27 +118,27 @@
 
     <?php 
     // Using double quotes and in-string variable
-    // Funcionó sin llaves también. Tiene mejor rendimiento que heredoc según: https://www.droptica.com/blog/combining-string-literals-and-variables-php/
+    // Funcionó sin llaves con variables, pero con array es necesario usar llaves. Tiene mejor rendimiento que heredoc según: https://www.droptica.com/blog/combining-string-literals-and-variables-php/
     $cardInString = "
     <div class='container pt-5'>
         <div class='card mb-3 mx-auto' style='max-width: 540px;'>
             <div class='row g-0'>
                 <div class='col-md-4 text-center'>
-                    <img src='{$image_url}' class='img-fluid rounded-start p-2' alt='{$image_alt}' title='{$image_alt}'>
+                    <img src='{$data['img']['url']}' class='img-fluid rounded-start p-2' alt='{$data['img']['alt']}' title='{$data['img']['alt']}'>
                 </div>
                 <div class='col-md-8'>
                     <div class='card-body'>
-                        <h5 class='card-title text-center'>{$nombre} {$apellido}</h5>
+                        <h5 class='card-title text-center'>{$data['nombre']} {$data['apellido']}</h5>
                         <hr>
                         <dl class='row'>
                             <dt class='col-6 text-end'>Edad</dt>
-                            <dd class='col-6'>{$edad}</dd>
+                            <dd class='col-6'>{$data['edad']}</dd>
                             <dt class='col-6 text-end'>Hobby</dt>
-                            <dd class='col-6'>{$hobby}</dd>
+                            <dd class='col-6'>{$data['hobby']}</dd>
                             <dt class='col-6 text-end'>Editor de código</dt>
-                            <dd class='col-6'>{$editor}</dd>
+                            <dd class='col-6'>{$data['editor']}</dd>
                             <dt class='col-6 text-end'>Sistema operativo</dt>
-                            <dd class='col-6'>{$os}</dd>
+                            <dd class='col-6'>{$data['os']}</dd>
                         </dl>
                     </div>
                 </div>
